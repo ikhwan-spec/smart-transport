@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltEdge Powerbank | Next-Gen Power</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1e293b;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+        .logo-container img {
+            height: 40px; /* Adjust based on your logo size */
+            display: block;
+        }
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* Page Layout */
+        .page {
+            min-height: 100vh;
+            padding: 120px 5% 80px 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+        }
+        h1, h2 {
+            color: #f1f5f9;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; }
+        p {
+            color: #94a3b8;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #0ea5e9;
+            transform: translateY(-2px);
+        }
+
+        /* Media Elements */
+        .poster-container {
+            max-width: 500px;
+            width: 100%;
+            margin-top: 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+        }
+        .poster-container img {
+            width: 100%;
+            display: block;
+        }
+        .video-container {
+            max-width: 800px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+            background: #000;
+        }
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        /* Grid for Specs & Gallery */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 2rem;
+        }
+        .card {
+            background-color: #1e293b;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        .card h3 {
+            color: #38bdf8;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Form */
+        form {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: white;
+            border-radius: 8px;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #38bdf8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #020617;
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR & LOGO -->
+    <header>
+        <div class="logo-container">
+            <!-- REPLACE 'logo.png' WITH YOUR ACTUAL LOGO FILE -->
+            <img src="logo.png" alt="VoltEdge Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='⚡ VoltEdge';">
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- PAGE 1: HOME (Includes Poster) -->
+    <section id="home" class="page">
+        <h1>Never Lose Momentum</h1>
+        <p>The ultimate smart power bank built for modern transport, heavy commuters, and global adventurers. Power that lasts for days.</p>
+        <a href="#contact" class="btn">Pre-Order Now</a>
+        
+        <!-- POSTER PLACEMENT -->
+        <div class="poster-container">
+            <!-- REPLACE 'poster.jpg' WITH YOUR ACTUAL POSTER IMAGE -->
+            <img src="poster.jpg" alt="VoltEdge Promo Poster" onerror="this.src='https://via.placeholder.com/500x700/1e293b/38bdf8?text=Your+Poster+Here'">
+        </div>
+    </section>
+
+    <!-- PAGE 2: ABOUT US -->
+    <section id="about" class="page">
+        <h2>Designed for the Journey</h2>
+        <p>We started with a simple problem: smart transport demands smart power. Whether you are navigating metro systems, catching a cross-country flight, or working from a café, a dead battery stops everything.</p>
+        <p>VoltEdge was engineered by a team of transit commuters who wanted to eliminate battery anxiety forever. We don't just build chargers; we build freedom.</p>
+    </section>
+
+    <!-- PAGE 3: FEATURES & SPECS (Includes Video) -->
+    <section id="features" class="page">
+        <h2>Unrivaled Engineering</h2>
+        <p>Watch how the VoltEdge handles daily wear and tear while keeping your devices charging at peak speeds.</p>
+        
+        <!-- VIDEO PLACEMENT -->
+        <div class="video-container">
+            <!-- REPLACE 'promo-video.mp4' WITH YOUR ACTUAL VIDEO FILE -->
+            <video controls poster="https://via.placeholder.com/800x450/1e293b/38bdf8?text=Video+Thumbnail">
+                <source src="promo-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>30,000 mAh</h3>
+                <p>Charge your phone up to 6 times on a single cycle.</p>
+            </div>
+            <div class="card">
+                <h3>100W Fast Charge</h3>
+                <p>Go from 0% to 50% in just 15 minutes.</p>
+            </div>
+            <div class="card">
+                <h3>Flight Approved</h3>
+                <p>Meets all TSA regulations for smart cabin luggage.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 4: LIFESTYLE GALLERY -->
+    <section id="gallery" class="page">
+        <h2>In The Wild</h2>
+        <p>See how VoltEdge fits seamlessly into smart transit, outdoor adventures, and everyday workflows.</p>
+        
+        <div class="grid">
+            <!-- You can use regular images or variations of your poster here -->
+            <div class="card"><p style="margin:0;">📸 [Image: Commuting on a Train]</p></div>
+            <div class="card"><p style="margin:0;">📸 [Image: Workspace at a Café]</p></div>
+            <div class="card"><p style="margin:0;">📸 [Image: Outdoor Trail Navigation]</p></div>
+        </div>
+    </section>
+
+    <!-- PAGE 5: CONTACT & SUPPORT -->
+    <section id="contact" class="page">
+        <h2>Get In Touch</h2>
+        <p>Have questions about compatibility, bulk transit orders, or shipping? Drop us a message.</p>
+        
+        <form onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email Address" required>
+            <textarea rows="5" placeholder="How can we help you?" required></textarea>
+            <button type="submit" class="btn" style="border:none; cursor:pointer;">Send Message</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 VoltEdge Technologies. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
