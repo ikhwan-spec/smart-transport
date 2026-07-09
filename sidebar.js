@@ -1,4 +1,4 @@
-// Shared sidebar behaviour for Smart Transport Malaysia.
+// Shared sidebar behaviour for Smart City Transit.
 // Keeps the collapsed/expanded state in sync across every page via localStorage,
 // so clicking a nav link (which loads a fresh page) no longer resets the sidebar.
 
