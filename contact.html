@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Transport Malaysia - Helpdesk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-flex {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .form-box {
+            flex: 1;
+            min-width: 320px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: var(--glass-shadow);
+        }
+        .info-box {
+            width: 350px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: var(--glass-shadow);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--primary-blue);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 8px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            outline: none;
+            background: rgba(255,255,255,0.7);
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--accent-purple);
+            background: white;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(10, 36, 99, 0.35);
+        }
+        .support-card {
+            margin-bottom: 25px;
+        }
+        .support-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-layout">
+
+        <!-- Gemini-Style Collapsible Sidebar -->
+        <aside class="sidebar-nav" id="sidebar">
+            <!-- Restores the collapsed/expanded state instantly, before paint, so the
+                 sidebar no longer "pops" back open on every page navigation -->
+            <script>
+                // Self-contained: restores state on load AND defines the toggle
+                // function, so this no longer depends on a separate JS file loading.
+                if (localStorage.getItem('stSidebarCollapsed') === '1') {
+                    document.getElementById('sidebar').classList.add('collapsed');
+                }
+                function toggleSidebar() {
+                    const sidebar = document.getElementById('sidebar');
+                    sidebar.classList.toggle('collapsed');
+                    localStorage.setItem('stSidebarCollapsed', sidebar.classList.contains('collapsed') ? '1' : '0');
+                }
+            </script>
+
+            <!-- Top Action Group (Hamburger Toggle) -->
+            <div class="sidebar-top">
+                <button class="toggle-btn" onclick="toggleSidebar()">
+                    ☰
+                </button>
+                <h1 class="nav-brand-text">Smart<span>Transport</span></h1>
+            </div>
+
+            <!-- Big Logo Zone -->
+            <div class="sidebar-logo-zone">
+                <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                    <img src="assets/logo.png" alt="Brand Logo" class="sidebar-brand-logo">
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="sidebar-links">
+                <a href="index.html">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="schedules.html">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Schedules</span>
+                </a>
+                <a href="passes.html">
+                    <span class="nav-icon">💳</span>
+                    <span class="nav-text">Passes</span>
+                </a>
+                <a href="alerts.html">
+                    <span class="nav-icon">🔔</span>
+                    <span class="nav-text">Live Status</span>
+                </a>
+                <a href="contact.html" class="active">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Helpdesk</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Right Side: All Main Content Wrapper -->
+        <div class="content-wrapper">
+
+            <!-- Page Intro Area -->
+            <section class="hero">
+                <div class="container">
+                    <h2>Support Desk & Transit Inquiries</h2>
+                    <p>Lost an item on an LRT train? Need to register a route complaint? Drop a request ticket below to instantly connect with helpdesks.</p>
+                </div>
+            </section>
+
+            <!-- Contact & Info Sections -->
+            <main class="container main-content">
+                <div class="contact-flex">
+                    
+                    <!-- Dynamic Form submission block -->
+                    <div class="form-box">
+                        <h3 style="font-family: 'Montserrat', sans-serif; margin-bottom: 20px; color: var(--primary-blue);">Submit Support Request</h3>
+                        <form action="#" method="POST" onsubmit="alert('Thank you! Your ticket has been recorded.'); return false;">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" placeholder="As per MyKad / Passport" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" placeholder="example@gmail.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Issue Classification</label>
+                                <select required>
+                                    <option value="">-- Choose Option --</option>
+                                    <option value="lost-found">💼 Lost & Found Property</option>
+                                    <option value="fare-error">💳 Card Reload / Fare Discrepancy</option>
+                                    <option value="complaint">📢 Delay or Staff Feedback</option>
+                                    <option value="other">❓ General System Inquiry</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Message Detail</label>
+                                <textarea rows="5" placeholder="Provide line numbers, timestamps, or card details..." required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">File Support Ticket</button>
+                        </form>
+                    </div>
+
+                    <!-- Hotline Information Sidebar -->
+                    <div class="info-box">
+                        <h3 style="font-family: 'Montserrat', sans-serif; margin-bottom: 20px; color: var(--primary-blue);">Hotlines</h3>
+                        
+                        <div class="support-card">
+                            <h4>Prasarana Helpline (RapidKL)</h4>
+                            <p style="font-weight: 600; font-size: 15px; color: var(--text-light);">📞 03-7885 2585</p>
+                            <p style="font-size: 13px; opacity:0.8;">Mon - Fri (7:00 AM - 8:30 PM)</p>
+                        </div>
+
+                        <div class="support-card">
+                            <h4>KTM Berhad Call Centre</h4>
+                            <p style="font-weight: 600; font-size: 15px; color: var(--text-light);">📞 03-2267 1200</p>
+                            <p style="font-size: 13px; opacity:0.8;">24/7 Operations Coverage</p>
+                        </div>
+
+                        <div class="support-card">
+                            <h4>Touch 'n Go Careline</h4>
+                            <p style="font-weight: 600; font-size: 15px; color: var(--text-light);">📞 03-2714 8888</p>
+                            <p style="font-size: 13px; opacity:0.8;">Mon - Sat (8:00 AM - 6:00 PM)</p>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- Global Standardized Footer -->
+            <footer class="site-footer">
+                <p>&copy; 2026 Smart Transport Malaysia. Created for Academic Assessment.</p>
+            </footer>
+
+        </div> <!-- End content-wrapper -->
+    </div> <!-- End app-layout -->
+
+
+</body>
+</html>

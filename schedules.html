@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Transport Malaysia - Schedules & Fares</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Adds spacing between the stacked tables */
+        /* Adds the white frosted glass card behind the tables so text is readable */
+        .transit-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: var(--glass-shadow);
+            margin-bottom: 40px;
+        }
+        
+        .transit-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .transit-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            font-size: 22px;
+            border-bottom: 2px solid var(--glass-border);
+            padding-bottom: 15px;
+        }
+        
+        /* Ensures table text stays bold and visible */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--text-main);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-layout">
+
+        <!-- Gemini-Style Collapsible Sidebar -->
+        <aside class="sidebar-nav" id="sidebar">
+            <!-- Restores the collapsed/expanded state instantly, before paint, so the
+                 sidebar no longer "pops" back open on every page navigation -->
+            <script>
+                // Self-contained: restores state on load AND defines the toggle
+                // function, so this no longer depends on a separate JS file loading.
+                if (localStorage.getItem('stSidebarCollapsed') === '1') {
+                    document.getElementById('sidebar').classList.add('collapsed');
+                }
+                function toggleSidebar() {
+                    const sidebar = document.getElementById('sidebar');
+                    sidebar.classList.toggle('collapsed');
+                    localStorage.setItem('stSidebarCollapsed', sidebar.classList.contains('collapsed') ? '1' : '0');
+                }
+            </script>
+
+            <!-- Top Action Group (Hamburger Toggle) -->
+            <div class="sidebar-top">
+                <button class="toggle-btn" onclick="toggleSidebar()">
+                    ☰
+                </button>
+                <h1 class="nav-brand-text">Smart<span>Transport</span></h1>
+            </div>
+
+            <!-- Big Logo Zone -->
+            <div class="sidebar-logo-zone">
+                <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                    <img src="assets/logo.png" alt="Brand Logo" class="sidebar-brand-logo">
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="sidebar-links">
+                <a href="index.html">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="schedules.html" class="active">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Schedules</span>
+                </a>
+                <a href="passes.html">
+                    <span class="nav-icon">💳</span>
+                    <span class="nav-text">Passes</span>
+                </a>
+                <a href="alerts.html">
+                    <span class="nav-icon">🔔</span>
+                    <span class="nav-text">Live Status</span>
+                </a>
+                <a href="contact.html">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Helpdesk</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Right Side: All Main Content Wrapper -->
+        <div class="content-wrapper">
+
+            <!-- Page Intro Area -->
+            <section class="hero">
+                <div class="container">
+                    <h2>Transit Timetables & Fare Structures</h2>
+                    <p>Filter active routes instantly. Scroll down to view live wait times, frequencies, and complete ticket pricing for all transport modes.</p>
+                </div>
+            </section>
+
+            <!-- Search and Schedules Lists -->
+            <main class="container main-content">
+                
+                <div class="search-container">
+                    <input type="text" id="transitSearch" onkeyup="filterSchedules()" placeholder="🔍 Search route, station, or code... (e.g., KLCC, Penang, 101, Gold)">
+                </div>
+
+                <div class="schedule-box">
+                    
+                    <div class="transit-section">
+                        <h3>🚌 Bus Transport Networks</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Route / Bus No.</th>
+                                        <th>Operational Run / Region</th>
+                                        <th>Next Arrival</th>
+                                        <th>Standard Frequency</th>
+                                        <th>Fare Range</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="searchable-tbody">
+                                    <tr>
+                                        <td><strong>101</strong></td>
+                                        <td>Weld Quay &rarr; Teluk Bahang (Rapid Penang)</td>
+                                        <td class="live-time">4 mins</td>
+                                        <td>Every 10-15 mins</td>
+                                        <td>RM 1.40 - RM 4.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>301</strong></td>
+                                        <td>Weld Quay &rarr; Relau (Rapid Penang)</td>
+                                        <td class="live-time">11 mins</td>
+                                        <td>Every 20 mins</td>
+                                        <td>RM 1.40 - RM 3.40</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>T756</strong></td>
+                                        <td>LRT Shah Alam &rarr; Bukit Rimau (Rapid KL)</td>
+                                        <td class="live-time">7 mins</td>
+                                        <td>Every 15 mins</td>
+                                        <td>RM 1.00 Flat</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>502</strong></td>
+                                        <td>Terminal Barup &rarr; Pekan Balik Pulau (Penang)</td>
+                                        <td class="live-time">15 mins</td>
+                                        <td>Every 30 mins</td>
+                                        <td>RM 2.00 - RM 3.40</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="transit-section">
+                        <h3>🚇 Klang Valley Rapid Rail Systems</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Transit Line</th>
+                                        <th>Primary Hubs / Landmark Stops</th>
+                                        <th>Next Headway</th>
+                                        <th>Peak Intervals</th>
+                                        <th>Cash / Token Fare</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="searchable-tbody">
+                                    <tr>
+                                        <td><span class="line-badge kelana">Kelana Jaya Line</span></td>
+                                        <td>Gombak &rarr; KL Sentral &rarr; KLCC &rarr; Putra Heights</td>
+                                        <td class="live-time">2 mins</td>
+                                        <td>Every 3 mins</td>
+                                        <td>RM 1.20 - RM 6.40</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="line-badge kajang">Kajang MRT Line</span></td>
+                                        <td>Kwasa Damansara &rarr; Pasar Seni &rarr; Bukit Bintang &rarr; Kajang</td>
+                                        <td class="live-time">3 mins</td>
+                                        <td>Every 4 mins</td>
+                                        <td>RM 1.10 - RM 6.40</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="line-badge ampang">Ampang Line</span></td>
+                                        <td>Sentul Timur &rarr; Majid Jamek &rarr; Ampang</td>
+                                        <td class="live-time">5 mins</td>
+                                        <td>Every 6 mins</td>
+                                        <td>RM 1.20 - RM 5.80</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="transit-section">
+                        <h3>🚄 Keretapi Tanah Melayu (KTM) Services</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Train Code / Service</th>
+                                        <th>Interstate Route Mapping</th>
+                                        <th>Scheduled Dep.</th>
+                                        <th>Est. Arrival</th>
+                                        <th>Base Ticket Pricing</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="searchable-tbody">
+                                    <tr>
+                                        <td><strong>EP9122 (Gold)</strong></td>
+                                        <td>KL Sentral &rarr; Ipoh &rarr; Butterworth (Penang)</td>
+                                        <td>08:05 AM</td>
+                                        <td>12:15 PM</td>
+                                        <td>RM 64.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>EG9024 (Silver)</strong></td>
+                                        <td>KL Sentral &rarr; Taiping &rarr; Padang Besar (Perlis)</td>
+                                        <td>11:30 AM</td>
+                                        <td>05:10 PM</td>
+                                        <td>RM 80.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>KTM Komuter</strong></td>
+                                        <td>Batu Caves &rarr; Mid Valley &rarr; Pulau Sebang (Melaka)</td>
+                                        <td class="live-time">06:15 AM</td>
+                                        <td>Rolling Interval</td>
+                                        <td>RM 2.00 - RM 10.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- Global Standardized Footer -->
+            <footer class="site-footer">
+                <p>&copy; 2026 Smart Transport Malaysia. Created for Academic Assessment.</p>
+            </footer>
+
+        </div> <!-- End content-wrapper -->
+    </div> <!-- End app-layout -->
+
+    <script>
+        // Monitors text inputs and dynamically manipulates row visibilities across ALL tables
+        function filterSchedules() {
+            let input = document.getElementById("transitSearch");
+            let filter = input.value.toLowerCase();
+            
+            // Grabs every single row in all three tables
+            let allRows = document.querySelectorAll(".searchable-tbody tr");
+
+            allRows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                // Show or hide based on the search
+                if (text.includes(filter)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

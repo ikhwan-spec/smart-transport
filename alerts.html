@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Transport Malaysia - Live Status</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .status-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: var(--glass-shadow);
+            margin-bottom: 30px;
+        }
+        .status-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+        }
+        .status-badge.normal { background: #00c853; }
+        .status-badge.delayed { background: #d90429; }
+        .status-badge.maintenance { background: #fb8500; }
+        
+        .alert-banner {
+            background: rgba(251, 133, 0, 0.15);
+            border-left: 5px solid #fb8500;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-layout">
+
+        <!-- Gemini-Style Collapsible Sidebar -->
+        <aside class="sidebar-nav" id="sidebar">
+            <!-- Restores the collapsed/expanded state instantly, before paint, so the
+                 sidebar no longer "pops" back open on every page navigation -->
+            <script>
+                // Self-contained: restores state on load AND defines the toggle
+                // function, so this no longer depends on a separate JS file loading.
+                if (localStorage.getItem('stSidebarCollapsed') === '1') {
+                    document.getElementById('sidebar').classList.add('collapsed');
+                }
+                function toggleSidebar() {
+                    const sidebar = document.getElementById('sidebar');
+                    sidebar.classList.toggle('collapsed');
+                    localStorage.setItem('stSidebarCollapsed', sidebar.classList.contains('collapsed') ? '1' : '0');
+                }
+            </script>
+
+            <!-- Top Action Group (Hamburger Toggle) -->
+            <div class="sidebar-top">
+                <button class="toggle-btn" onclick="toggleSidebar()">
+                    ☰
+                </button>
+                <h1 class="nav-brand-text">Smart<span>Transport</span></h1>
+            </div>
+
+            <!-- Big Logo Zone -->
+            <div class="sidebar-logo-zone">
+                <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                    <img src="assets/logo.png" alt="Brand Logo" class="sidebar-brand-logo">
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="sidebar-links">
+                <a href="index.html">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="schedules.html">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Schedules</span>
+                </a>
+                <a href="passes.html">
+                    <span class="nav-icon">💳</span>
+                    <span class="nav-text">Passes</span>
+                </a>
+                <a href="alerts.html" class="active">
+                    <span class="nav-icon">🔔</span>
+                    <span class="nav-text">Live Status</span>
+                </a>
+                <a href="contact.html">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Helpdesk</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Right Side: All Main Content Wrapper -->
+        <div class="content-wrapper">
+
+            <!-- Page Intro Area -->
+            <section class="hero">
+                <div class="container">
+                    <h2>Network Health & Live Alerts</h2>
+                    <p>Real-time service indicators across all major Malaysian rail and bus infrastructure networks. Check for delays or active maintenance before you depart.</p>
+                </div>
+            </section>
+
+            <!-- Status Reports -->
+            <main class="container main-content">
+                
+                <div class="alert-banner">
+                    ⚠️ <strong>Maintenance Advisory:</strong> KTM Komuter Klang Valley lines will experience scheduled frequency track shifts this upcoming Sunday from 12:00 AM to 05:00 AM. Plan accordingly!
+                </div>
+
+                <div class="status-container">
+                    <h3 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">🚈 Rail Networks Status</h3>
+                    <ul class="status-list">
+                        <li class="status-item">
+                            <span><strong>Kelana Jaya LRT Line</strong></span>
+                            <span class="status-badge normal">Normal Service</span>
+                        </li>
+                        <li class="status-item">
+                            <span><strong>Kajang MRT Line</strong></span>
+                            <span class="status-badge normal">Normal Service</span>
+                        </li>
+                        <li class="status-item">
+                            <span><strong>Ampang LRT Line</strong></span>
+                            <span class="status-badge delayed">4 Min Delay</span>
+                        </li>
+                        <li class="status-item">
+                            <span><strong>ETS Intercity Trains</strong></span>
+                            <span class="status-badge normal">Normal Service</span>
+                        </li>
+                        <li class="status-item">
+                            <span><strong>KLIA Ekspres / Transit</strong></span>
+                            <span class="status-badge normal">Normal Service</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="status-container">
+                    <h3 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">🚌 Bus Network Status</h3>
+                    <ul class="status-list">
+                        <li class="status-item">
+                            <span><strong>Rapid KL Bus Fleets</strong></span>
+                            <span class="status-badge normal">Normal Service</span>
+                        </li>
+                        <li class="status-item">
+                            <span><strong>Rapid Penang Fleets</strong></span>
+                            <span class="status-badge maintenance">Route 101 Diverted</span>
+                        </li>
+                        <li class="status-item">
+                            <span><strong>BRT Sunway Bus Line</strong></span>
+                            <span class="status-badge normal">Normal Service</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </main>
+
+            <!-- Global Standardized Footer -->
+            <footer class="site-footer">
+                <p>&copy; 2026 Smart Transport Malaysia. Created for Academic Assessment.</p>
+            </footer>
+
+        </div> <!-- End content-wrapper -->
+    </div> <!-- End app-layout -->
+
+
+</body>
+</html>

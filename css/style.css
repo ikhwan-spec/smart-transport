@@ -1,0 +1,524 @@
+/* --- Premium Universal UI Variables --- */
+:root {
+    --primary-blue: #0A2463;
+    --accent-teal: #00E5FF;
+    --accent-purple: #7C43BD;
+    --text-main: #1a1a1a;
+    --text-light: #555555;
+    --white: #ffffff;
+    
+    --glass-bg: rgba(255, 255, 255, 0.88);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(rgba(10, 36, 99, 0.72), rgba(10, 36, 99, 0.85)), 
+                url('https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&q=80&w=2000') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   GEMINI-STYLE APP LAYOUT ENGINE
+   ========================================================================== */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Glassmorphic Sidebar Navigation Base */
+.sidebar-nav {
+    width: 260px; /* Fully expanded width */
+    background-color: #1a1a1e;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-right: 1px solid #2d2d34;
+    box-shadow: var(--glass-shadow);
+    padding: 20px 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Custom Hidden Navigation Scrollbar Track */
+.sidebar-nav::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* --- COLLAPSED STATE (Gemini Icon Mode) --- */
+.sidebar-nav.collapsed {
+    width: 70px; /* Shrinks to icon-only size */
+    padding: 20px 10px;
+}
+
+/* Top Action Header (Hamburger Toggle & Title) */
+.sidebar-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-left: 8px;
+}
+
+/* Toggle Hamburger Button Alignment */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #e0e0e6; 
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.toggle-btn:active {
+    transform: scale(0.9);
+}
+
+.sidebar-nav.collapsed .toggle-btn {
+    transform: rotate(180deg);
+}
+
+.sidebar-nav.collapsed .toggle-btn:active {
+    transform: rotate(180deg) scale(0.9);
+}
+
+.nav-brand-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+}
+
+.nav-brand-text span {
+    color: var(--accent-teal);
+}
+
+/* Hide title text when bar is tiny */
+.sidebar-nav.collapsed .nav-brand-text {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+/* ==========================================================================
+   LOGO COMFORT & POSITION FIX (Prevents shifting left on collapse)
+   ========================================================================== */
+.sidebar-logo-zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, opacity 0.2s ease, margin-bottom 0.3s ease;
+}
+
+/* Wraps the logo image layout structure */
+.logo-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-link:hover {
+    transform: scale(1.04);
+}
+
+.logo-link:active {
+    transform: scale(0.97);
+}
+
+.logo-link:focus-visible {
+    outline: 2px solid var(--accent-teal);
+    outline-offset: 4px;
+}
+
+/* Logo filtering and sizing controls */
+.sidebar-brand-logo {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 8px;
+    filter: invert(1) brightness(2); 
+    transition: filter 0.2s ease, max-width 0.3s ease;
+}
+
+/* Soft glow-up when you hover over the logo link */
+.logo-link:hover .sidebar-brand-logo {
+    filter: invert(1) brightness(2.3) drop-shadow(0 0 10px rgba(0, 229, 255, 0.35));
+}
+
+/* Collapsed Logo Constraints — Forces it to shrink cleanly instead of shifting left */
+.sidebar-nav.collapsed .sidebar-logo-zone {
+    margin-bottom: 20px;
+}
+
+.sidebar-nav.collapsed .sidebar-brand-logo {
+    max-width: 32px; /* Scales down to an icon size that balances with the menu emojis */
+}
+
+/* ==========================================================================
+   NAVIGATION LINKS WRAPPER
+   ========================================================================== */
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-links a {
+    text-decoration: none;
+    color: #a0a0ab;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, padding 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    white-space: nowrap;
+    position: relative;
+}
+
+/* Centers icons/emojis in placeholder slots */
+.nav-icon {
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    min-width: 24px;
+    transition: transform 0.2s ease;
+}
+
+.nav-text {
+    transition: opacity 0.2s ease;
+    opacity: 1;
+}
+
+/* Hide text links completely when collapsed */
+.sidebar-nav.collapsed .nav-text {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+/* Hover behaviors */
+.sidebar-links a:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
+.sidebar-links a:hover .nav-icon {
+    transform: scale(1.1);
+}
+
+/* Style for the active/selected page link */
+.sidebar-links a.active {
+    background-color: #2563eb; 
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+/* Active page ribbon strip selector indicator */
+.sidebar-links a.active::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    border-radius: 0 4px 4px 0;
+    background: var(--accent-teal);
+}
+
+/* Collapsed alignment logic — Centers navigation rows completely */
+.sidebar-nav.collapsed .sidebar-links a {
+    justify-content: center;
+    padding: 12px 0;
+}
+
+.sidebar-nav.collapsed .sidebar-links a:hover {
+    transform: none; /* Keeps sidebar from wobbling when hovering collapsed items */
+}
+
+.sidebar-nav.collapsed .sidebar-links a.active::before {
+    left: 0;
+    width: 3px;
+}
+
+/* ==========================================================================
+   CONTENT WRAPPER (Adapts automatically when navigation shifts)
+   ========================================================================== */
+.content-wrapper {
+    margin-left: 260px; 
+    width: calc(100% - 260px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: page-fade-in 0.4s ease;
+}
+
+@keyframes page-fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .content-wrapper { animation: none; }
+    .toggle-btn, .logo-link, .sidebar-links a, .feature-card, .pass-card, .card-btn {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* When sidebar has the '.collapsed' class, expand the main workspace */
+.sidebar-nav.collapsed + .content-wrapper {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+}
+
+/* ==========================================================================
+   CORE SITE STYLES (Your Original Code Unchanged)
+   ========================================================================== */
+.hero {
+    text-align: center;
+    padding: 50px 0 30px;
+    color: var(--white);
+}
+
+.hero h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    background: linear-gradient(100deg, #ffffff 40%, var(--accent-teal) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.hero p {
+    font-size: 17px;
+    opacity: 0.95;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.main-content {
+    padding-bottom: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.feature-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px 0 rgba(0, 0, 0, 0.18);
+}
+
+.feature-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-blue);
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    font-size: 15px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.card-btn {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(10, 36, 99, 0.35);
+}
+
+.site-footer {
+    text-align: center;
+    padding: 35px 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    margin-top: auto;
+}
+
+/* Multimedia Grids */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.media-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.media-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px 0 rgba(0, 0, 0, 0.16);
+}
+
+.media-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--glass-border);
+    padding-bottom: 10px;
+}
+
+.media-card video, .promo-poster {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: block;
+}
+
+/* ==========================================================================
+   SCHEDULES PAGE — SEARCH BAR + LINE BADGES
+   ========================================================================== */
+.search-container {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+#transitSearch {
+    width: 100%;
+    padding: 16px 20px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    box-shadow: var(--glass-shadow);
+    outline: none;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#transitSearch::placeholder {
+    color: var(--text-light);
+    opacity: 0.8;
+}
+
+#transitSearch:focus {
+    box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.35), var(--glass-shadow);
+    transform: translateY(-1px);
+}
+
+.schedule-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.line-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
+.line-badge.kelana { background: #9c2542; }
+.line-badge.kajang { background: #009688; }
+.line-badge.ampang { background: #f7941d; }
+
+.live-time {
+    font-weight: 800;
+    color: #00a352;
+}
+
+table tr:hover {
+    background: rgba(10, 36, 99, 0.04);
+}

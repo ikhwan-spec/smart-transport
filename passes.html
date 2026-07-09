@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Transport Malaysia - Travel Cards & Passes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Minor inline CSS specific to the Passes layout to keep your main CSS clean -->
+    <style>
+        .pass-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .pass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .pass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 36px 0 rgba(0, 0, 0, 0.18);
+        }
+
+        .pass-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .price-tag {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-purple);
+            margin-bottom: 20px;
+            display: inline-block;
+            border-bottom: 3px solid var(--accent-teal);
+        }
+
+        .pass-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .pass-card ul li {
+            margin-bottom: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .pass-card ul li::before {
+            content: "✓";
+            color: #00c853;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .badge-exclusive {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: linear-gradient(45deg, #ffb703, #fb8500);
+            color: white;
+            font-weight: 800;
+            font-size: 11px;
+            padding: 5px 35px;
+            transform: rotate(45deg);
+            text-transform: uppercase;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-layout">
+
+        <!-- Gemini-Style Collapsible Sidebar -->
+        <aside class="sidebar-nav" id="sidebar">
+            <!-- Restores the collapsed/expanded state instantly, before paint, so the
+                 sidebar no longer "pops" back open on every page navigation -->
+            <script>
+                // Self-contained: restores state on load AND defines the toggle
+                // function, so this no longer depends on a separate JS file loading.
+                if (localStorage.getItem('stSidebarCollapsed') === '1') {
+                    document.getElementById('sidebar').classList.add('collapsed');
+                }
+                function toggleSidebar() {
+                    const sidebar = document.getElementById('sidebar');
+                    sidebar.classList.toggle('collapsed');
+                    localStorage.setItem('stSidebarCollapsed', sidebar.classList.contains('collapsed') ? '1' : '0');
+                }
+            </script>
+
+            <!-- Top Action Group (Hamburger Toggle) -->
+            <div class="sidebar-top">
+                <button class="toggle-btn" onclick="toggleSidebar()">
+                    ☰
+                </button>
+                <h1 class="nav-brand-text">Smart<span>Transport</span></h1>
+            </div>
+
+            <!-- Big Logo Zone -->
+            <div class="sidebar-logo-zone">
+                <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                    <img src="assets/logo.png" alt="Brand Logo" class="sidebar-brand-logo">
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="sidebar-links">
+                <a href="index.html">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="schedules.html">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Schedules</span>
+                </a>
+                <a href="passes.html" class="active">
+                    <span class="nav-icon">💳</span>
+                    <span class="nav-text">Passes</span>
+                </a>
+                <a href="alerts.html">
+                    <span class="nav-icon">🔔</span>
+                    <span class="nav-text">Live Status</span>
+                </a>
+                <a href="contact.html">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Helpdesk</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Right Side: All Main Content Wrapper -->
+        <div class="content-wrapper">
+
+            <!-- Page Intro Area -->
+            <section class="hero">
+                <div class="container">
+                    <h2>Travel Cards & Integrations</h2>
+                    <p>From daily single-journey tokens to unlimited 30-day travel passes. Find the smartest way to pay for your daily commute across Malaysia.</p>
+                </div>
+            </section>
+
+            <!-- Pass Types Grid -->
+            <main class="container main-content">
+                <div class="pass-grid">
+                    
+                    <!-- My50 Pass -->
+                    <div class="pass-card">
+                        <div class="badge-exclusive">Malaysians Only</div>
+                        <h3>My50 Travel Pass</h3>
+                        <div class="price-tag">RM 50 / 30 Days</div>
+                        <p style="margin-bottom: 20px; color: var(--text-light);">The ultimate commuter pass for Klang Valley residents. Link to your Enhanced Touch 'n Go card or eWallet.</p>
+                        <ul>
+                            <li>Unlimited LRT, MRT, and Monorail rides</li>
+                            <li>Unlimited Rapid KL & Feeder Buses</li>
+                            <li>BRT Sunway Line included</li>
+                            <li>Purchase directly via TNG eWallet app</li>
+                        </ul>
+                        <a href="#" class="card-btn" style="width: 100%;">View Activation Guide</a>
+                    </div>
+
+                    <!-- Concession Cards -->
+                    <div class="pass-card">
+                        <h3>Rapid Concession Cards</h3>
+                        <div class="price-tag">50% Off Fares</div>
+                        <p style="margin-bottom: 20px; color: var(--text-light);">Special discounted travel cards (Rapid Pelajar, Rapid Emas, and OKU) tailored for specific demographics.</p>
+                        <ul>
+                            <li>Available for Students (Primary to Uni)</li>
+                            <li>Available for Senior Citizens (60+ years)</li>
+                            <li>Available for Registered OKU users</li>
+                            <li>RM 15 upfront (RM5 Card + RM10 Value)</li>
+                        </ul>
+                        <a href="#" class="card-btn" style="width: 100%;">Download Registration Form</a>
+                    </div>
+
+                    <!-- Enhanced Touch 'n Go -->
+                    <div class="pass-card">
+                        <h3>Enhanced Touch 'n Go</h3>
+                        <div class="price-tag">Standard Fares</div>
+                        <p style="margin-bottom: 20px; color: var(--text-light);">The standard pay-as-you-go method for occasional travelers and tourists across the whole country.</p>
+                        <ul>
+                            <li>Valid on all Rail, Bus, and ETS networks</li>
+                            <li>Tap directly at highway tolls & parking</li>
+                            <li>Reload instantly via NFC on your phone</li>
+                            <li>Purchase at any station counter for RM 10</li>
+                        </ul>
+                        <a href="#" class="card-btn" style="width: 100%;">Check Card Balance</a>
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- Global Standardized Footer -->
+            <footer class="site-footer">
+                <p>&copy; 2026 Smart Transport Malaysia. Created for Academic Assessment.</p>
+            </footer>
+
+        </div> <!-- End content-wrapper -->
+    </div> <!-- End app-layout -->
+
+
+</body>
+</html>
